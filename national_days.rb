@@ -1,6 +1,6 @@
 require 'csv'
 
-class Holidays
+class NationalDays
 
   def today
     records[Date.today]
@@ -11,16 +11,15 @@ class Holidays
   def records
     @records ||= begin
       rows.each_with_object({}) do |row, all|
-        date = Date.parse("#{row[1]} #{Date.today.year}")
+        date = Date.parse("#{row[0]} #{Date.today.year}")
         all[date] = {
-          name: row[2],
-          moon: row[3]
+          national: row[1]
         }
       end
     end
   end
 
   def rows
-    @rows ||= CSV.read("./holidays.csv")
+    @rows ||= CSV.read("./national_days.csv")
   end
 end
