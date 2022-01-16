@@ -25,7 +25,7 @@ class Weather
   end
 
   def temperatures
-    weather.split('/')
+    weather.split('/').map(&:strip).map { |t| t.tr('°', '') }
   end
 
   def weather
