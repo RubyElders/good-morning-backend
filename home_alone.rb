@@ -13,7 +13,8 @@ class HomeAlone
   private
 
   def find_topics
-    tv_today = URI.open(TV_TODAY).read
+    date = Date.today.strftime('%d.%m.%Y')
+    tv_today = URI.open(TV_TODAY + date + '/').read
     tv_today_html = Nokogiri::HTML(tv_today)
     link = tv_today_html.css('a').find {|el| el.text == 'Sama doma'}
     return '' if link.nil?
