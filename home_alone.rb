@@ -16,7 +16,9 @@ class HomeAlone
     date = Date.today.strftime('%d.%m.%Y')
     tv_today = URI.open(TV_TODAY + date + '/').read
     tv_today_html = Nokogiri::HTML(tv_today)
-    link = tv_today_html.css('a').find {|el| el.text == 'Sama doma'}
+
+    # lol, actually Good morning until end of the summer :'(
+    link = tv_today_html.css('a').find {|el| el.text == 'Dobré ráno'}
     return '' if link.nil?
 
     today = URI.open(TV + link.attributes['href'].value).read
