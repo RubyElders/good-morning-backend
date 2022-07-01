@@ -3,7 +3,7 @@ require 'csv'
 class NationalDays
 
   def today
-    records[Date.today]
+    records[Date.today] || error_message
   end
 
   private
@@ -21,5 +21,9 @@ class NationalDays
 
   def rows
     @rows ||= CSV.read("./national_days.csv")
+  end
+
+  def error_message
+    { national: "Mezinárodní den Dobrého Rána" }
   end
 end
